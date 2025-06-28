@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: myapp-service
 spec:
-  type: LoadBalancer # Изменено с NodePort
+  type: ClusterIP # Изменено с NodePort
   selector:
     app: myapp
   ports:
