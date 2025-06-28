@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: myapp-service
 spec:
-  type: NodePort
+  type: LoadBalancer # Изменено с NodePort
   selector:
     app: myapp
   ports:
     - port: 33500
-      targetPort: 33500
-      nodePort: 30001
+      targetPort: 33500 
+      #nodePort: 30001  # nodePort удалён (не нужен для LoadBalancer)
