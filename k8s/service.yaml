@@ -2,10 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: myapp-service
+  namespace: my-golang-app-space
 spec:
   type: ClusterIP # Изменено с NodePort
   selector:
-    app: myapp
+    app: myapp  
   ports:
     - port: 33500
       targetPort: 33500 
