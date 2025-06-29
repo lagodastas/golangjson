@@ -22,7 +22,7 @@ func main() {
 		json.NewEncoder(w).Encode(data)
 	})
 
-	fmt.Println("Echo")
+	fmt.Println("Echo new 2")
 
 	http.ListenAndServe(":33500", nil)
 }
