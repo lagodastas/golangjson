@@ -2,24 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: myapp-ingress
-  namespace: my-golang-app-space
+  namespace: myapp-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /  # опционально, если нужен path rewrite
 spec:
+  ingressClassName: nginx  # убедись, что у тебя ingressClass nginx
   rules:
-  #- host: myapp.local  # Замените на ваше доменное имя или оставьте так (для теста) либо удалить и будет доступ только по ip
-   - http:
-      paths:
-      - path: /json
-        pathType: Prefix
-        backend:
-          service:
-            name: myapp-service
-            port:
-              number: 33500
-      - path: /app
-        pathType: Prefix
-        backend:
-          service:
-            name: apache-php-service
-            port:
-              number: 80
-  
+    - host: pro.sahin.com.ua
+      http:
+        paths:
+          - path: /json
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-service
+                port:
+                  number: 33500
