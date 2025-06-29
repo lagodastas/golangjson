@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-php-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apache-php
+  template:
+    metadata:
+      labels:
+        app: apache-php
+    spec:
+      containers:
+      - name: apache-php
+        image: therion84/apache-php71:v1
+        ports:
+        - containerPort: 80
+        volumeMounts:
+            - name: my-local-volume
+              mountPath: /html   # путь внутри контейнера
+      volumes:
+        - name: my-local-volume
+          hostPath:
+            path: D:/WEB/www/sahin/pro  # абсолютный путь на вашей машине (ноды)
+            type: Directory

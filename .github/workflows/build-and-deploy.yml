@@ -1,0 +1,40 @@
+name: Build and Deploy to Minikube
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker image
+      run: |
+        docker build -t myapp:latest .
+
+    - name: Start Minikube
+      uses: medyagh/setup-minikube@v0.0.14
+      with:
+        minikube-version: 'v1.31.2'
+        kubernetes-version: 'v1.29.0'
+
+    - name: Load image into Minikube
+      run: |
+        minikube image load myapp:latest
+
+    - name: Deploy to Minikube with manifests
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+
+    - name: Get service URL
+      run: |
+        minikube service myapp --url

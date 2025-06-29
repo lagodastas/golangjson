@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
-	"time"
 )
 
 type Data struct {
@@ -14,8 +13,6 @@ type Data struct {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		data := Data{
 			Weight: rand.Intn(30) + 1,  // weight от 1 до 30
