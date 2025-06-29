@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-php-service
+spec:
+  type: ClusterIP # или LoadBalancer, если поддерживается
+  selector:
+    app: apache-php
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      #nodePort: 30081 # можно не указывать, тогда выберется автоматически
