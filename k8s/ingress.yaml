@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  namespace: my-golang-app-space
+spec:
+  rules:
+  #- host: myapp.local  # Замените на ваше доменное имя или оставьте так (для теста) либо удалить и будет доступ только по ip
+   - http:
+      paths:
+      - path: /json
+        pathType: Prefix
+        backend:
+          service:
+            name: myapp-service
+            port:
+              number: 33500
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: apache-php-service
+            port:
+              number: 80
+  
