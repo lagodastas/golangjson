@@ -18,26 +18,26 @@ spec:
           image: therion84/myapp:v1
           ports:
             - containerPort: 33500
-            livenessProbe:
-              httpGet:
-                path: /
-                port: 33500
-              initialDelaySeconds: 5
-              periodSeconds: 10
-              timeoutSeconds: 3
-              failureThreshold: 3
-            readinessProbe:
-              httpGet:
-                path: /
-                port: 33500
-              initialDelaySeconds: 2
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 3
-            resources:
-              requests:
-                memory: "64Mi"
-                cpu: "50m"
-              limits:
-                memory: "128Mi"
-                cpu: "100m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 33500
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 33500
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
