@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx  # убедись, что у тебя ingressClass nginx
   rules:
-    - host: pro.sahin.com.ua
+    - host: k8s.stasik.od.ua
       http:
         paths:
           - path: /json
