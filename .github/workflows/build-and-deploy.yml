@@ -25,4 +25,4 @@ jobs:
         kubectl apply -f k8s/service.yaml
 
     - name: Print service URL
-      run: minikube service myapp --url -n my-golang-app-space
+      run: minikube service myapp-service --url -n my-golang-app-space
